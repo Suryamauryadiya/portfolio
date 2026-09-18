@@ -375,6 +375,7 @@
           <div>Client <span>2-person team contracted to test 15,000 wheels</span></div>
           <div>Role <span>Scoping, quoting, modelling, dashboard</span></div>
           <div>Delivery <span>Milestone-based freelance engagement</span></div>
+          <div>Infra <span>AWS EC2, set up and run by me</span></div>
         </div>
       </div>
       <div class="body">
@@ -486,7 +487,7 @@
 
     <h4 class="stack-label">Stacks I've shipped with or led teams on</h4>
     <div class="stack" aria-label="Tools and technologies">
-      <span>Claude &amp; Claude Code</span><span>Supabase</span><span>PostgreSQL &amp; row-level security</span><span>Expo / React Native</span><span>Vercel</span><span>Web Push</span><span>Embeddings &amp; vector search</span><span>RAG with PII masking</span><span>Python / Flask on AWS Lambda</span><span>MongoDB &amp; MySQL</span><span>Make.com</span><span>Agile delivery</span>
+      <span>Claude &amp; Claude Code</span><span>Supabase</span><span>PostgreSQL &amp; row-level security</span><span>Expo / React Native</span><span>Vercel</span><span>Web Push</span><span>Embeddings &amp; vector search</span><span>RAG with PII masking</span><span>Agent orchestration</span><span>Computer vision (YOLO, Gemini)</span><span>Python / Flask on AWS Lambda</span><span>AWS (Lambda, EC2)</span><span>Azure AI Foundry</span><span>MongoDB &amp; MySQL</span><span>Make.com</span><span>Agile delivery</span>
     </div>
 
     <div class="decisions">
@@ -500,6 +501,10 @@
         <div class="decision">
           <h4>Mask before you retrieve</h4>
           <p>On a conversational AI for a large US healthcare organisation, historical conversations were the retrieval source. We designed PII masking into the ingestion pipeline from day one rather than filtering model output afterwards, so patient identifiers never entered the index in the first place. Fixing this later would have meant rebuilding the corpus.</p>
+        </div>
+        <div class="decision">
+          <h4>Delete the model nobody asked for</h4>
+          <p>A video-analysis pipeline was running YOLO on GPU instances for multi-person bounding boxes and object-level detection, then a second model for lighting, then a third for the actual analysis. When I walked the client back through the requirement, they had never asked for bounding boxes or object detection; they wanted the analysis. We cut the detection stage, moved the analysis to Gemini, and got better results at a fraction of the compute cost. The expensive part of the system was there because it was technically interesting, not because anyone needed it.</p>
         </div>
         <div class="decision">
           <h4>Rules where the physics is known, ML where it isn't</h4>
@@ -517,7 +522,7 @@
     <ul class="timeline">
       <li>
         <div class="when">Apr–Aug 2026</div>
-        <div class="what"><strong>Product Lead, Tech Mahindra</strong><span>Led a team building a conversational AI interface for one of the largest US healthcare organisations, using historical conversations as a retrieval source. Designed PII masking into the pipeline from day one so patient data never surfaced in retrieval. Built presales decks for the account.</span></div>
+        <div class="what"><strong>Product Lead, Tech Mahindra</strong><span>Ran two AI teams in parallel for one of the largest US healthcare organisations, on Azure. Conversational AI: a RAG pipeline with agent orchestration, using Azure AI Foundry services for PII masking so patient data never entered retrieval; I caught that the agents had no short-term context cache across turns and got a rolling window of recent conversation added before it reached testing. Video analysis: person detection that started on YOLO plus a separate lighting-detection model, then moved to Gemini for the analysis step; I re-scoped it with the client and removed the GPU-bound detection stage the requirements never actually needed.</span></div>
       </li>
       <li>
         <div class="when">Dec 2024–Apr 2026</div>
